@@ -47,10 +47,7 @@ jump_idx = np.where(np.abs(np.diff(currents)) > jump_threshold)[0]
 bounds = np.r_[0, jump_idx + 1, len(times)]
 pulse_charges_mC = []
 pulse_mean_currents_mA = []
-# -----------------------------
-# Plot 1: cumulative charge within each pulse
-# This lets you compare all pulses directly.
-# -----------------------------
+
 for n, (a, b) in enumerate(zip(bounds[:-1], bounds[1:]), start=1):
     t_seg = times[a:b]
     i_seg = currents[a:b]
@@ -68,7 +65,7 @@ for n, (a, b) in enumerate(zip(bounds[:-1], bounds[1:]), start=1):
     pulse_mean_currents_mA.append(np.mean(i_seg) * 1000.0)
 
 # -----------------------------
-# Plot 2: charge delivered per pulse
+# Plot: charge delivered per pulse
 # If the sets are behaving consistently, this is the plot
 # that should be near-horizontal for each type of pulse.
 # -----------------------------
